@@ -27,6 +27,9 @@ namespace HotelBooking.UnitTests
             // Implement fake GetAll() method.
             fakeRoomRepository.Setup(x => x.GetAll()).Returns(rooms);
 
+            // Implement fake Add() method.
+            fakeRoomRepository.Setup(x => x.Add(new Room { Id=2, Description="B"}));
+
 
             // Implement fake Get() method.
             //fakeRoomRepository.Setup(x => x.Get(2)).Returns(rooms[1]);
@@ -50,6 +53,14 @@ namespace HotelBooking.UnitTests
 
             // Create RoomsController
             controller = new RoomsController(fakeRoomRepository.Object);
+        }
+
+        [Fact]
+        public void Add_WhenRoomIsNull_AddIsNotCalled()
+        {
+            controller.Post(null);
+
+            fakeRoomRepository.Verify(x => x.Add(It.IsAny<Room>()), Times.Never);
         }
 
         [Fact]
