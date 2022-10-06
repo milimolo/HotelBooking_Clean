@@ -64,5 +64,18 @@ namespace HotelBooking.UnitTests
             // Assert
             Assert.NotEqual(-1, roomId);
         }
+
+        [Fact]
+        public void FindAvailableRoom_RoomsFullyOccupied_RoomIdMinusOne()
+        {
+            var startDate = DateTime.Today.AddDays(11);
+            var endDate = DateTime.Today.AddDays(17);
+
+            // Act
+            int roomId = bookingManager.FindAvailableRoom(startDate, endDate);
+
+            // Assert
+            Assert.Equal(-1, roomId);
+        }
     }
 }
