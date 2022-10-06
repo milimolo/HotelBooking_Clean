@@ -58,8 +58,10 @@ namespace HotelBooking.UnitTests
         [Fact]
         public void Add_WhenRoomIsNull_AddIsNotCalled()
         {
+            // Act
             controller.Post(null);
 
+            // Assert
             fakeRoomRepository.Verify(x => x.Add(It.IsAny<Room>()), Times.Never);
         }
 

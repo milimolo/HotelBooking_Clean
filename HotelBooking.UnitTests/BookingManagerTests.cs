@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using HotelBooking.Core;
 using HotelBooking.UnitTests.Fakes;
 using Xunit;
@@ -41,5 +43,26 @@ namespace HotelBooking.UnitTests
             Assert.NotEqual(-1, roomId);
         }
 
+        public static IEnumerable<object[]> GetLocalValidData()
+        {
+            var data = new List<object[]>
+            {
+                new object[] { DateTime.Today.AddDays(2), DateTime.Today.AddDays(7) },
+                new object[] { DateTime.Today.AddDays(21), DateTime.Today.AddDays(27) },
+            };
+
+            return data;
+        }
+
+        [Theory]
+        [MemberData(nameof(GetLocalValidData))]
+        public void FindAvailableRoom_ValidMemberData_RoomsAreAvailableInFutureBooking(DateTime startDate, DateTime endDate)
+        {
+            // Act
+            int roomId = bookingManager.FindAvailableRoom(startDate, endDate);
+
+            // Assert
+            Assert.NotEqual(-1, roomId);
+        }
     }
 }
