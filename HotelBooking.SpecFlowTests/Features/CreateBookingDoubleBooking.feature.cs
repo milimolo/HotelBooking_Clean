@@ -19,7 +19,7 @@ namespace HotelBooking.SpecFlowTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreateBookingFeature : object, Xunit.IClassFixture<CreateBookingFeature.FixtureData>, System.IDisposable
+    public partial class CreateBookingDoubleBookingFeature : object, Xunit.IClassFixture<CreateBookingDoubleBookingFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace HotelBooking.SpecFlowTests.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateBooking.feature"
+#line 1 "CreateBookingDoubleBooking.feature"
 #line hidden
         
-        public CreateBookingFeature(CreateBookingFeature.FixtureData fixtureData, HotelBooking_SpecFlowTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateBookingDoubleBookingFeature(CreateBookingDoubleBookingFeature.FixtureData fixtureData, HotelBooking_SpecFlowTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,8 @@ namespace HotelBooking.SpecFlowTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreateBooking", "In order to book.\r\nI can book a room that is available.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreateBookingDoubleBooking", "In order to avoid double booking\r\nI cannot book a room that is already booked.\r\nI" +
+                    " cannot book a room when start date is later than end date.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,13 +81,13 @@ namespace HotelBooking.SpecFlowTests.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableTheoryAttribute(DisplayName="Book a room")]
-        [Xunit.TraitAttribute("FeatureTitle", "CreateBooking")]
-        [Xunit.TraitAttribute("Description", "Book a room")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Double book a room")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreateBookingDoubleBooking")]
+        [Xunit.TraitAttribute("Description", "Double book a room")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        [Xunit.InlineDataAttribute("\'2022-11-03\'", "\'2022-11-04\'", new string[0])]
-        [Xunit.InlineDataAttribute("\'2022-11-23\'", "\'2022-11-25\'", new string[0])]
-        public virtual void BookARoom(string startDate, string endDate, string[] exampleTags)
+        [Xunit.InlineDataAttribute("\'2022-11-03\'", "\'2022-11-14\'", new string[0])]
+        [Xunit.InlineDataAttribute("\'2022-11-13\'", "\'2022-11-26\'", new string[0])]
+        public virtual void DoubleBookARoom(string startDate, string endDate, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "tag1"};
@@ -98,8 +99,8 @@ namespace HotelBooking.SpecFlowTests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("startDate", startDate);
             argumentsOfScenario.Add("endDate", endDate);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Book a room", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Double book a room", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -119,17 +120,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given(string.Format("I have entered a {0}", startDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 9
- testRunner.And(string.Format("I have also entered a {0}", endDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given(string.Format("I have typed a {0}", startDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("I press book room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("I have also typed a {0}", endDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("The result should be true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I use book room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("The booking result should be false", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -142,12 +143,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                CreateBookingFeature.FeatureSetup();
+                CreateBookingDoubleBookingFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreateBookingFeature.FeatureTearDown();
+                CreateBookingDoubleBookingFeature.FeatureTearDown();
             }
         }
     }

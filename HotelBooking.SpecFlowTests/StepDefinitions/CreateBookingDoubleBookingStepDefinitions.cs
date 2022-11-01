@@ -5,9 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace HotelBooking.SpecFlowTests.StepDefinitions
 {
-
     [Binding]
-    public class CreateBookingStepDefinitions
+    public class CreateBookingDoubleBookingStepDefinitions
     {
         DateTime startDate, endDate;
 
@@ -27,7 +26,7 @@ namespace HotelBooking.SpecFlowTests.StepDefinitions
             Name = "John Bam"
         };
 
-        public CreateBookingStepDefinitions()
+        public CreateBookingDoubleBookingStepDefinitions()
         {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
@@ -37,25 +36,23 @@ namespace HotelBooking.SpecFlowTests.StepDefinitions
             bookingManager = new BookingManager(bookRepo, roomRepo);
         }
 
-        
-
-        [Given(@"I have entered a '([^']*)'")]
-        public void GivenIHaveEnteredA(string p0)
+        [Given(@"I have typed a '([^']*)'")]
+        public void GivenIHaveTypedA(string p0)
         {
             startDate = DateTime.Parse(p0);
         }
 
-        [Given(@"I have also entered a '([^']*)'")]
-        public void GivenIHaveAlsoEnteredA(string p0)
+        [Given(@"I have also typed a '([^']*)'")]
+        public void GivenIHaveAlsoTypedA(string p0)
         {
             endDate = DateTime.Parse(p0);
         }
 
-        [When(@"I press book room")]
-        public void WhenIPressBookRoom()
+        [When(@"I use book room")]
+        public void WhenIUseBookRoom()
         {
-            
-            var booking = new Booking{
+            var booking = new Booking
+            {
                 Id = 1,
                 Customer = customer,
                 CustomerId = 1,
@@ -67,10 +64,11 @@ namespace HotelBooking.SpecFlowTests.StepDefinitions
             };
             roomBooked = bookingManager.CreateBooking(booking);
         }
-        [Then(@"The result should be true")]
-        public void ThenTheResultShouldBeTrue()
+
+        [Then(@"The booking result should be false")]
+        public void ThenTheBookingResultShouldBeFalse()
         {
-            Assert.True(roomBooked);
+            Assert.False(roomBooked);
         }
     }
 }
