@@ -84,8 +84,8 @@ namespace HotelBooking.SpecFlowTests.Features
         [Xunit.TraitAttribute("FeatureTitle", "CreateBooking")]
         [Xunit.TraitAttribute("Description", "Book a room")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        [Xunit.InlineDataAttribute("\'2022-11-03\'", "\'2022-11-04\'", new string[0])]
-        [Xunit.InlineDataAttribute("\'2022-11-23\'", "\'2022-11-25\'", new string[0])]
+        [Xunit.InlineDataAttribute("1", "2", new string[0])]
+        [Xunit.InlineDataAttribute("21", "23", new string[0])]
         public virtual void BookARoom(string startDate, string endDate, string[] exampleTags)
         {
             string[] @__tags = new string[] {

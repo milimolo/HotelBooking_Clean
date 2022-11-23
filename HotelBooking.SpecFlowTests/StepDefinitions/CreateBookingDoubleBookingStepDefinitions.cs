@@ -36,16 +36,16 @@ namespace HotelBooking.SpecFlowTests.StepDefinitions
             bookingManager = new BookingManager(bookRepo, roomRepo);
         }
 
-        [Given(@"I have typed a '([^']*)'")]
-        public void GivenIHaveTypedA(string p0)
+        [Given(@"I have typed a (.*)")]
+        public void GivenIHaveTypedA(int p0)
         {
-            startDate = DateTime.Parse(p0);
+            startDate = DateTime.Today.AddDays(p0);
         }
 
-        [Given(@"I have also typed a '([^']*)'")]
-        public void GivenIHaveAlsoTypedA(string p0)
+        [Given(@"I have also typed a (.*)")]
+        public void GivenIHaveAlsoTypedA(int p0)
         {
-            endDate = DateTime.Parse(p0);
+            endDate = DateTime.Today.AddDays(p0);
         }
 
         [When(@"I use book room")]

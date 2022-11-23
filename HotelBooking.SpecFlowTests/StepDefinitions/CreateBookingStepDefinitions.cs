@@ -37,18 +37,16 @@ namespace HotelBooking.SpecFlowTests.StepDefinitions
             bookingManager = new BookingManager(bookRepo, roomRepo);
         }
 
-        
-
-        [Given(@"I have entered a '([^']*)'")]
-        public void GivenIHaveEnteredA(string p0)
+        [Given(@"I have entered a (.*)")]
+        public void GivenIHaveEnteredA(int p0)
         {
-            startDate = DateTime.Parse(p0);
+            startDate = DateTime.Today.AddDays(p0);
         }
 
-        [Given(@"I have also entered a '([^']*)'")]
-        public void GivenIHaveAlsoEnteredA(string p0)
+        [Given(@"I have also entered a (.*)")]
+        public void GivenIHaveAlsoEnteredA(int p0)
         {
-            endDate = DateTime.Parse(p0);
+            endDate = DateTime.Today.AddDays(p0);
         }
 
         [When(@"I press book room")]

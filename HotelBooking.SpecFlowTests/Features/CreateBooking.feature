@@ -11,6 +11,6 @@ Scenario Outline: Book a room
 	Then The result should be true
 
 	Examples: 
-	| startDate		| endDate		|
-	| '2022-11-03'	| '2022-11-04'	|
-	| '2022-11-23'	| '2022-11-25'	|
+	| startDate	| endDate	|
+	| 1			| 2			|
+	| 21		| 23		|

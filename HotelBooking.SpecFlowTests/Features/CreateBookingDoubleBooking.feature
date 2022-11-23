@@ -12,6 +12,6 @@ Scenario Outline: Double book a room
 	Then The booking result should be false
 
 	Examples: 
-	| startDate    | endDate      |
-	| '2022-11-03' | '2022-11-14' |
-	| '2022-11-13' | '2022-11-26' |
+	| startDate | endDate   |
+	| 1			| 12		|
+	| 11		| 24		|

@@ -85,8 +85,8 @@ namespace HotelBooking.SpecFlowTests.Features
         [Xunit.TraitAttribute("FeatureTitle", "CreateBookingDoubleBooking")]
         [Xunit.TraitAttribute("Description", "Double book a room")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        [Xunit.InlineDataAttribute("\'2022-11-03\'", "\'2022-11-14\'", new string[0])]
-        [Xunit.InlineDataAttribute("\'2022-11-13\'", "\'2022-11-26\'", new string[0])]
+        [Xunit.InlineDataAttribute("1", "12", new string[0])]
+        [Xunit.InlineDataAttribute("11", "24", new string[0])]
         public virtual void DoubleBookARoom(string startDate, string endDate, string[] exampleTags)
         {
             string[] @__tags = new string[] {
